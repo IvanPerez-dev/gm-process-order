@@ -15,11 +15,15 @@ public interface OrderDocumentMapper {
     @Mapping(target = "status", expression = "java(order.getStatus().name())")
     OrderDocument toDocument(Order order);
 
-  //  @Mapping(target = "orderId", source = "id")
+    @Mapping(target = "orderId", source = "id")
     @Mapping(target = "status", expression = "java(com.grupomariposa.orderworker.domain.enums.OrderStatus.valueOf" +
             "(document.getStatus()))")
     Order toDomain(OrderDocument document);
 
     CustomerDocument toCustomerDocument(Customer customer);
+    @Mapping(target = "total", expression = "java(item.getTotal())")
     OrderItemDocument toItemDocument(OrderItem item);
+
+    Customer toCustomer(CustomerDocument document);
+    OrderItem toOrderItem(OrderItemDocument document);
 }

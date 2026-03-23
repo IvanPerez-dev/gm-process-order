@@ -27,7 +27,7 @@ public class RetryStateAdapter  implements RetryStatePort {
         return redisTemplate.opsForValue()
                             .increment(key)
                             .flatMap(count ->
-                                             redisTemplate.expire(key, TTL) // resetea TTL en cada intento
+                                             redisTemplate.expire(key, TTL)
                                                           .thenReturn(count.intValue())
                             );
     }

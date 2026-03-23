@@ -30,7 +30,7 @@ public class ProductApiAdapter implements ProductClientPort {
         return webClient.get()
                         .uri(uriBuilder -> uriBuilder
                                 .path("/api/v1/products")
-                                .queryParam("ids", String.join(",", productIds))
+                                .queryParam("ids",  productIds)
                                 .build()
                         )
                         .retrieve()

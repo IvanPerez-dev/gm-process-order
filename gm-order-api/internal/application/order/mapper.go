@@ -17,6 +17,7 @@ func toResponse(o *order.Order) *OrderResponse {
 			Name:      item.Name,
 			Price:     item.Price,
 			Quantity:  item.Quantity,
+			Total:     float64(item.Quantity) * item.Price,
 		}
 	}
 	return &OrderResponse{

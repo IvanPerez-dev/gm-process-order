@@ -19,12 +19,12 @@ public class DistributedLockAdapter implements DistributedLockPort {
         this.redisTemplate = redisTemplate;
     }
     private static final String PREFIX = "lock:order:";
-    private static final Duration TTL = Duration.ofMinutes(5); // evita lock infinito si el worker muere
+    private static final Duration TTL = Duration.ofMinutes(5);
 
     @Override
     public Mono<Boolean> acquire(String orderId) {
         return redisTemplate.opsForValue()
-                            .setIfAbsent(PREFIX + orderId, "locked", TTL); // SETNX atomico
+                            .setIfAbsent(PREFIX + orderId, "locked", TTL);
     }
 
     @Override

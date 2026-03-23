@@ -8,6 +8,8 @@ import lombok.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Getter
 @Builder
@@ -43,6 +45,22 @@ public class Order {
         boolean allEnriched = enrichedItems.stream().allMatch(OrderItem::isEnriched);
         if (!allEnriched)
             throw new OrderProcessingException(orderId, "Not all items were enriched");
+
+        Map<String, Integer> quantityMap = this.products.stream()
+                                                        .collect(Collectors.toMap(
+                                                                OrderItem::getProductId,
+                                                                OrderItem::getQuantity
+                                                        ));
+
+
+        enrichedItems.forEach(item -> {
+            Integer quantity = quantityMap.get(item.getProductId());
+            if (quantity == null) {
+                throw new OrderProcessingException(orderId,
+                                                   "Product not found in original order: " + item.getProductId());
+            }
+            item.setQuantity(quantity);
+        });
 
         this.products.clear();
         this.products.addAll(enrichedItems);

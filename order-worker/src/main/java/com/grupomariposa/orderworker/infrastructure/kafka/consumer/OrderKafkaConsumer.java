@@ -28,7 +28,7 @@ public class OrderKafkaConsumer   implements ApplicationRunner {
                 .doOnError(ex -> log.error("Fatal error in kafka consumer", ex))
                 .retryWhen(Retry.backoff(Long.MAX_VALUE, Duration.ofSeconds(5))
                                 .maxBackoff(Duration.ofSeconds(30))
-                                // reintenta indefinidamente si el consumer cae
+
                                 .doBeforeRetry(signal ->
                                                        log.warn("Retrying kafka consumer after failure, attempt: {}",
                                                                 signal.totalRetries())
@@ -55,7 +55,7 @@ public class OrderKafkaConsumer   implements ApplicationRunner {
                                                                              log.error("Message failed — orderId: {}, error: {}",
                                                                                        record.key(), ex.getMessage())
                                                           )
-                                                          .onErrorResume(ex -> Mono.empty()) // no detiene el Flux
+                                                          .onErrorResume(ex -> Mono.empty())
                                                           .doFinally(signal -> MDC.clear());
                             },10);
     }

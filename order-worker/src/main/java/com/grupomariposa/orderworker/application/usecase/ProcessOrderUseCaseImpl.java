@@ -1,4 +1,4 @@
-package com.grupomariposa.orderworker.application.useCases;
+package com.grupomariposa.orderworker.application.usecase;
 
 import com.grupomariposa.orderworker.domain.model.Order;
 import com.grupomariposa.orderworker.domain.port.inbound.order.OrderMessageCommand;

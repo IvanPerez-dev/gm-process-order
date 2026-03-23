@@ -43,7 +43,7 @@ public class CustomerApiAdapter implements CustomerClientPort {
                         .map(this::toDomain)
                         .retryWhen(Retry.backoff(3, Duration.ofSeconds(2))
                                         .maxBackoff(Duration.ofSeconds(10))
-                                        .filter(ex -> ex instanceof OrderProcessingException) // solo reintenta 5xx
+                                        .filter(ex -> ex instanceof OrderProcessingException)
                                         .doBeforeRetry(signal ->
                                                                log.warn("Retrying customer API call, attempt: {}", signal.totalRetries())
                                         )

@@ -37,6 +37,8 @@ func main() {
 	customerRepo := mongodb.NewCustomerMongoRepository(db)
 	customerService := customerapplication.NewCustomerService(customerRepo)
 
+	runSeed(context.Background(), customerRepo, productRepo)
+
 	orderHandler := infrahttp.NewOrderHandler(
 		orderService,
 		orderService,

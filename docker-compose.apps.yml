@@ -1,0 +1,52 @@
+services:
+  gm-order-api:
+    build:
+      context: ./gm-order-api
+      dockerfile: Dockerfile
+    container_name: gm-order-api
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      PORT: 8081
+      MONGO_URI: mongodb://mongodb:27017
+      MONGO_DB: gm_orders
+      KAFKA_BROKERS: kafka:29092
+      KAFKA_TOPIC: orders.created
+      CUSTOMER_API_URL: http://gm-order-api:8081
+      PRODUCT_API_URL: http://gm-order-api:8081
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - gm-network
+
+  gm-order-worker:
+    build:
+      context: ./order-worker
+      dockerfile: Dockerfile
+    container_name: gm-order-worker
+    restart: unless-stopped
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/gm_orders
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      CUSTOMER_API_URL: http://gm-order-api:8081
+      PRODUCT_API_URL: http://gm-order-api:8081
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      gm-order-api:
+        condition: service_started
+    networks:
+      - gm-network
+
+networks:
+  gm-network:
