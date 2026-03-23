@@ -1,4 +1,4 @@
-package com.grupomariposa.orderworker.ecexption;
+package com.grupomariposa.orderworker.domain.ecexption;
 
 public class OrderProcessingException extends RuntimeException  {
     private final String orderId;

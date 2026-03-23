@@ -1,0 +1,179 @@
+# ============================================================
+# GO API - gm-order-api
+# ============================================================
+
+# Binarios compilados
+gm-order-api/bin/
+gm-order-api/dist/
+gm-order-api/server
+gm-order-api/*.exe
+gm-order-api/*.exe~
+gm-order-api/*.dll
+gm-order-api/*.so
+gm-order-api/*.dylib
+
+# Test binaries
+gm-order-api/*.test
+gm-order-api/*.out
+
+# Dependency vendor
+gm-order-api/vendor/
+
+# Go workspace
+gm-order-api/go.work
+gm-order-api/go.work.sum
+
+# Coverage
+gm-order-api/coverage.out
+gm-order-api/coverage.html
+
+# Air (live reload)
+gm-order-api/tmp/
+
+# ============================================================
+# JAVA WORKER - gm-order-worker
+# ============================================================
+
+# Compiled class files
+gm-order-worker/**/*.class
+
+# Maven
+gm-order-worker/target/
+gm-order-worker/.mvn/wrapper/maven-wrapper.jar
+gm-order-worker/pom.xml.tag
+gm-order-worker/pom.xml.releaseBackup
+gm-order-worker/pom.xml.versionsBackup
+gm-order-worker/pom.xml.next
+gm-order-worker/release.properties
+gm-order-worker/dependency-reduced-pom.xml
+gm-order-worker/buildNumber.properties
+gm-order-worker/.mvn/timing.properties
+
+# Gradle
+gm-order-worker/.gradle/
+gm-order-worker/build/
+gm-order-worker/gradle-app.setting
+gm-order-worker/!gradle-wrapper.jar
+gm-order-worker/.gradletasknamecache
+
+# JAR / WAR / EAR
+gm-order-worker/**/*.jar
+gm-order-worker/**/*.war
+gm-order-worker/**/*.nar
+gm-order-worker/**/*.ear
+gm-order-worker/**/*.zip
+gm-order-worker/**/*.tar.gz
+gm-order-worker/**/*.rar
+
+# Spring Boot devtools
+gm-order-worker/.spring-boot-devtools.properties
+
+# Logs
+gm-order-worker/logs/
+gm-order-worker/**/*.log
+
+# ============================================================
+# IDEs Y EDITORES
+# ============================================================
+
+# VSCode
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+
+# IntelliJ IDEA
+.idea/
+**/*.iws
+**/*.iml
+**/*.ipr
+out/
+
+# Eclipse
+**/.classpath
+**/.project
+**/.settings/
+**/bin/
+
+# STS (Spring Tool Suite)
+.apt_generated
+.factorypath
+
+# ============================================================
+# SISTEMA OPERATIVO
+# ============================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+
+# ============================================================
+# DOCKER
+# ============================================================
+
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ============================================================
+# VARIABLES DE ENTORNO Y SECRETOS
+# ============================================================
+
+.env
+.env.local
+.env.*.local
+*.env
+**/.env
+secrets/
+**/secrets/
+*.pem
+*.key
+*.cert
+*.crt
+*_rsa
+*_dsa
+*_ecdsa
+*_ed25519
+
+# ============================================================
+# LOGS GENERALES
+# ============================================================
+
+*.log
+logs/
+**/logs/
+log/
+**/log/
+
+# ============================================================
+# MISCELANEO
+# ============================================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Coverage y reportes
+coverage/
+**/coverage/
+*.lcov
+test-results/
+**/test-results/
+surefire-reports/
+**/surefire-reports/

@@ -1,0 +1,35 @@
+spring:
+  name: orderworker
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/gm_orders}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: order-worker-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+server:
+  port: ${PORT:8083}
+
+app:
+  redis:
+    idempotency:
+      ttl-hours: 24
+    lock:
+      ttl-minutes: 5
+    retry:
+      max-attempts: 3
+  kafka:
+    topics:
+      input: orders.inbound
+    consumer:
+      concurrency: 10
+  go-api:
+    customer:
+      base-url: ${CUSTOMER_API_URL:http://localhost:8081}
+    product:
+      base-url: ${PRODUCT_API_URL:http://localhost:8081}
